@@ -3,7 +3,7 @@ import Note from '../models/Note.js';
 
 
 
-// Get Method
+// Get all Method
 export async function getAllNotes (req, res) {
   try {
     const notes = await Note.find();
@@ -14,6 +14,22 @@ export async function getAllNotes (req, res) {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+// Get by ID Method
+
+export async function getNoteById (req, res) {
+  try {
+    const { id } = req.params;
+    const note = await Note.findById(id);
+    if (!note) {
+      return res.status(404).json({ message: "Note not found" });
+    } 
+    res.status(200).json(note); 
+  } catch (error) {
+    console.error("Error fetching note by ID:", error);
+    res.status(500).json({ message: "Internal server error in Fetching by ID" });
+  }
+}
 
 // Post Method
 export async function createNote (req, res) {

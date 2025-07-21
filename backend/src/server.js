@@ -10,11 +10,11 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 
-// Middleware to parse JSON bodies
-app.use(express.json());
+
+app.use(express.json());// Middleware to parse JSON bodies
 
 app.use((req, res, next)=>{
-  console.log("we just got a request");
+  console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
   next();
 })
 

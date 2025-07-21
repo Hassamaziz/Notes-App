@@ -20,11 +20,7 @@ app.use(rateLimiter); // Apply rate limiting middleware
 //   next();
 // })
 
-
-
-
 app.use("/api/notes", notesRoutes);
-
 
 
 // Connect to the database

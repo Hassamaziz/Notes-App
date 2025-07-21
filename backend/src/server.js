@@ -13,10 +13,12 @@ const PORT = process.env.PORT || 5001;
 
 app.use(express.json());// Middleware to parse JSON bodies
 
-app.use((req, res, next)=>{
-  console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
-  next();
-})
+
+// This is a simple custom middleware to log requests
+// app.use((req, res, next)=>{
+//   console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
+//   next();
+// })
 
 
 connectDB();

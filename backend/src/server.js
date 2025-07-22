@@ -1,18 +1,30 @@
 import express from "express";
-import notesRoutes from "./routes/notesRoutes.js";
 import dotenv from 'dotenv';
-dotenv.config();
+import cors from "cors";
+
+
+import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
 import rateLimiter from "./middleware/rateLimiter.js";
+
+dotenv.config();
 
 
 const app = express();
 
 const PORT = process.env.PORT || 5001;
 
+
+// Middleware to enable CORS
+app.use(cors({
+  origin: "http://localhost:5173", // Allow requests from the frontend
+}));
+
 app.use(express.json());// Middleware to parse JSON bodies
 
 app.use(rateLimiter); // Apply rate limiting middleware
+
+
 
 // This is a simple custom middleware to log requests
 // app.use((req, res, next)=>{

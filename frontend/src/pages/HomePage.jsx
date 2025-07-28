@@ -11,6 +11,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
  
 
+  // data fetch logic
   useEffect(() => {
     const fetchNotes = async () => {
       try {

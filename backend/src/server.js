@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 
-// Middleware to enable CORS functionality 
+// Middleware to enable CORS
 app.use(cors({
   origin: "http://localhost:5173", // Allow requests from the frontend
 }));

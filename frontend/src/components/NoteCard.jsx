@@ -5,7 +5,6 @@ import { formatDate } from "../lib/utils.js";
 const NoteCard = ({ note }) => {
   const handleDelete = async(e) =>{
     
-
   }
  
   return (

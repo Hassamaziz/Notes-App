@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from 'dotenv';
 import cors from "cors";
+import path from "path";
 
 
 import notesRoutes from "./routes/notesRoutes.js";
@@ -9,6 +10,7 @@ import rateLimiter from "./middleware/rateLimiter.js";
 
 dotenv.config();
 
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -16,9 +18,12 @@ const PORT = process.env.PORT || 5001;
 
 
 // Middleware to enable CORS
-app.use(cors({
-  origin: "http://localhost:5173", // Allow requests from the frontend
+if (process.env.NODE_ENV !== "production") {
+  app.use(cors({
+  origin: "http://localhost:5173",
 }));
+
+}
 
 app.use(express.json());// Middleware to parse JSON bodies
 
@@ -33,6 +38,17 @@ app.use(rateLimiter); // Apply rate limiting middleware
 // })
 
 app.use("/api/notes", notesRoutes);
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// Serve the frontend application
+
+if (process.env.NODE_ENV === "production") {
+ 
+  app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend","dist", "index.html"));
+});
+
+}
 
 
 // Connect to the database

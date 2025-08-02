@@ -3,6 +3,10 @@ import { Link } from "react-router";
 import { formatDate } from "../lib/utils.js";
 
 const NoteCard = ({ note }) => {
+  const handleDelete = async(e) =>{
+    
+
+  }
  
   return (
     <Link
@@ -21,6 +25,7 @@ const NoteCard = ({ note }) => {
             <PenSquareIcon className="size-4" />
             <button
               className="btn btn-ghost btn-xs text-error"
+
             >
               <Trash2Icon className="size-4" />
             </button>
